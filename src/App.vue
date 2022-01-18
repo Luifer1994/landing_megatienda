@@ -1,10 +1,22 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Nav></Nav>
+  <banner></banner>
+  <router-view />
+  <Footer></Footer>
+  <notifications position="bottom right"/>
 </template>
+<script>
+import Banner from './components/Banner.vue';
+import Footer from './components/Footer.vue';
+import Nav from "./components/Nav.vue";
+export default {
+  components: {
+    Nav,
+    Banner,
+    Footer,
+  },
+};
+</script>
 
 <style>
 #app {
