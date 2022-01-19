@@ -1,9 +1,9 @@
 <template>
     <!-- Back to top button -->
-  <div class="back-to-top"></div>
+  <!-- <div class="back-to-top"></div> -->
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" data-offset="500">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" data-offset="500">
       <div class="container">
         <a href="#" class="navbar-brand">
             <img src="../assets/logo-megatiendas-01.jpg" alt="" width="150px">

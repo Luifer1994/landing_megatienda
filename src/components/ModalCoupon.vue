@@ -23,37 +23,81 @@
           </button>
         </div>
         <div class="modal-body">
-          <input
-            class="form-control form-control-sm"
-            type="text"
-            placeholder="Ingresa tu identificación"
-            v-model="document"
-          />
+          <div class="form-row form-wrap form-wrap text-justify">
+            <div class="form-group col-md-12">
+              <label for="document" v-if="!valid">Validar documento</label>
+              <input
+                type="number"
+                v-model="document"
+                v-bind:class="{
+                  'form-control form-control-sm': true,
+                  'is-invalid': !document && documentBlured,
+                }"
+                v-on:blur="documentBlured = true"
+                placeholder="Número de documento..."
+              />
+              <div class="invalid-feedback">Número de documento requerido</div>
+            </div>
 
-          <small class="text-primary" v-if="validating">Validando...</small>
-          <div v-if="isValid">
-            <input
-              class="form-control form-control-sm my-2"
-              type="text"
-              placeholder="Ingresa tu cupón"
-            />
-            <input
-              class="form-control form-control-sm"
-              type="text"
-              placeholder="Ingresa serie"
-            />
+            <div class="form-group col-md-12" v-if="isValid">
+              <input
+                type="number"
+                v-model="coupon"
+                v-bind:class="{
+                  'form-control form-control-sm': true,
+                  'is-invalid': !coupon && couponBlured,
+                }"
+                v-on:blur="couponBlured = true"
+                placeholder="Cupón..."
+              />
+              <div class="invalid-feedback">Cupón requerido</div>
+            </div>
+
+            <div class="form-group col-md-12" v-if="isValid">
+              <input
+                type="number"
+                v-model="serie"
+                v-bind:class="{
+                  'form-control form-control-sm': true,
+                  'is-invalid': !serie && serieBlured,
+                }"
+                v-on:blur="serieBlured = true"
+                placeholder="Serie..."
+              />
+              <div class="invalid-feedback">Serie requerida</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center" v-if="validating">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+            @click="cancel()"
+          >
             Cancelar
           </button>
           <button
+            v-if="!valid"
             type="button"
             class="btn btn-primary"
             @click="validateDocument()"
           >
             Validar
+          </button>
+          <button
+            v-else
+            type="button"
+            class="btn btn-primary"
+            @click="storeCoupon()"
+          >
+            Registrar
           </button>
         </div>
       </div>
@@ -70,32 +114,65 @@ export default {
       isValid: false,
       validating: false,
       urlApi: process.env.VUE_APP_URL_API,
-      document: null,
+      document: "",
+      coupon: "",
+      serie: "",
+      documentBlured: false,
+      couponBlured: false,
+      serieBlured: false,
+      valid: false,
     };
   },
   methods: {
     async validateDocument() {
       try {
-        this.validating = true;
-        const res = await axios.get(
-          this.urlApi + "clients?document_client=" + this.document
-        );
-        if (res.data.res) {
-          this.isValid = true;
-          console.log(res);
+        this.validate();
+        if (this.valid) {
+          this.validating = true;
+          const res = await axios.get(
+            this.urlApi + "clients?document_client=" + this.document
+          );
+          if (res.data.res) {
+            this.isValid = true;
+          }
         }
       } catch (error) {
-        console.log(error.response.data);
         this.$notify({
           title: "Error",
           text: "Usted no se encuentra registrado en nuestro sistema!",
           type: "error",
         });
-        this.$router.push("register-user#register");
+        this.$router.push("register-user");
         window.$("#staticBackdrop").modal("hide");
       }
-
       this.validating = false;
+    },
+    storeCoupon() {
+      this.validateCoupon();
+      if (this.valid) {
+        this.coupon = "";
+        this.serie = "";
+        console.log("Todo ok");
+      }
+    },
+    validate: function () {
+      this.documentBlured = true;
+      if (this.document) {
+        this.valid = true;
+      }
+    },
+    validateCoupon() {
+      this.couponBlured = true;
+      this.serieBlured = true;
+      if (this.coupon && this.serie) {
+        this.valid = true;
+      }
+    },
+    cancel() {
+      window.$("#staticBackdrop").modal("hide");
+      this.coupon = "";
+      this.serie = "";
+      this.document = "";
     },
   },
 };

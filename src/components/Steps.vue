@@ -9,9 +9,17 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
+                srcset="
+                  ../assets/img/Piezas-para-landing-Boton-1.png 320w,
+                  ../assets/img/Piezas-para-landing-Boton-1.png 480w,
+                  ../assets/img/Piezas-para-landing-Boton-1.png 800w
+                "
+                sizes="(max-width: 300px) 200px,
+            (max-width: 480px) 200px,
+            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
+                alt="Mega Tiendas"
                 class="img-fluid rounded-start"
-                alt="..."
               />
             </div>
             <div class="col-md-8">
@@ -21,7 +29,12 @@
                   Antes de realizar tus compras regístrate o actualiza tus
                   datos.
                 </p>
-                <a href="service.html" class="btn btn-primary">Regístrate</a>
+                <router-link to="/register-user"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Regístrate
+                </router-link>
               </div>
             </div>
           </div>
@@ -34,9 +47,17 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
+                srcset="
+                  ../assets/img/Piezas-para-landing-Boton-1.png 320w,
+                  ../assets/img/Piezas-para-landing-Boton-1.png 480w,
+                  ../assets/img/Piezas-para-landing-Boton-1.png 800w
+                "
+                sizes="(max-width: 300px) 200px,
+            (max-width: 480px) 200px,
+            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
+                alt="Mega Tiendas"
                 class="img-fluid rounded-start"
-                alt="..."
               />
             </div>
             <div class="col-md-8" id="coupon">
