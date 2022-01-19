@@ -124,19 +124,6 @@
                         />
                       </template>
                     </v-date-picker>
-
-                    <!-- <input
-                      type="text"
-                      onfocus="(this.type='date')"
-                      id="date"
-                      v-model="birthDate"
-                      v-bind:class="{
-                        'form-control form-control-sm': true,
-                        'is-invalid': !birthDate && emailBlured,
-                      }"
-                      v-on:blur="birthDateBlured = true"
-                      placeholder="Fecha de nacimiento..."
-                    /> -->
                     <div
                       class="text-danger text-sm"
                       v-if="
@@ -166,7 +153,7 @@
                 </div>
               </div>
 
-              <div>
+              <div v-if="formData === 2">
                 <hr />
                 <h5 class="text-left ml-3">Datos de contacto.</h5>
                 <div class="form-row form-wrap form-wrap text-justify">
@@ -226,12 +213,17 @@
                       v-on:blur="cityBlured = true"
                     >
                       <option>--CIUDAD DE RESIDENCIA--</option>
-                      <option v-for="item in cities" :key="item.cod_erp">
+                      <option
+                        v-for="item in cities"
+                        :key="item.cod_erp"
+                        :value="item.cod_erp"
+                      >
                         {{ item.descripcion }}
                       </option>
                     </select>
                     <div class="invalid-feedback">Ciudad requerido</div>
                   </div>
+                 
 
                   <div class="form-group col-md-6">
                     <!--  <label for="deparment">Bario de residencia</label> -->
@@ -316,7 +308,7 @@
             v-if="formData === 2 && !submitted"
             @click="prevForm()"
             type="button"
-            class="btn btn-warning"
+            class="btn btn-warning btn-sm px-3"
           >
             Anterior
           </button>
@@ -325,7 +317,7 @@
             type="button"
             @click="nexForm()"
             v-else-if="formData === 1 && !submitted"
-            class="btn btn-primary"
+            class="btn btn-primary btn-sm px-3"
           >
             Siguiente
           </button>
@@ -334,11 +326,11 @@
             v-if="formData === 2 && !submitted"
             type="submit"
             v-on:click.stop.prevent="submit()"
-            class="btn btn-primary ml-2"
+            class="btn btn-primary ml-1 btn-sm px-3"
           >
             Guardar
           </button>
-          <router-link to="/" type="button" class="btn btn-danger ml-2">
+          <router-link v-if="!submitted" to="/" type="button" class="btn btn-danger ml-1 btn-sm px-3">
             Cancelar
           </router-link>
         </div>
@@ -355,7 +347,7 @@ export default {
   data() {
     return {
       masks: {
-        input: "YYYYMMDD",
+        input: "YYYY-MM-DD",
       },
       email: "",
       name: "",
