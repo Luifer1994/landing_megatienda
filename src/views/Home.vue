@@ -5,17 +5,16 @@
 </template>
 
 <script>
-import BannerInfo from '../components/BannerInfo.vue'
-import Services from '../components/Services.vue'
-import Steps from '../components/Steps.vue'
-
+import BannerInfo from "../components/BannerInfo.vue";
+import Services from "../components/Services.vue";
+import Steps from "../components/Steps.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Steps,
     BannerInfo,
-    Services
+    Services,
   }
-}
+};
 </script>

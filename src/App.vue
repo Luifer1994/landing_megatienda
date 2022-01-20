@@ -1,6 +1,7 @@
 <template>
   <Nav></Nav>
-  <banner></banner>
+  <banner v-if="
+      $route.name !== 'TermsConditions'"></banner>
   <router-view />
   <Footer></Footer>
   <notifications position="bottom right"/>
