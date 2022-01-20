@@ -158,88 +158,101 @@
                 <h5 class="text-left ml-3">Datos de contacto.</h5>
                 <div class="form-row form-wrap form-wrap text-justify">
                   <div class="form-group col-md-6">
-                    <!-- <label for="country">Pais de residencia</label> -->
-                    <select
-                      @change="listDeparment(country)"
+                    <Multiselect
                       v-model="country"
+                      placeholder="PAÍS DE RESIDENCIA"
+                      label="name"
+                      :searchable="true"
+                      :filterResults="true"
+                      :minChars="20"
+                      :resolveOnLoad="true"
+                      :delay="0"
+                      :options="countries"
+                      @input="listDeparment"
                       v-bind:class="{
                         'form-control form-control-sm': true,
-                        'is-invalid':
-                          country == '--PAÍS DE RESIDENCIA--' && countryBlured,
+                        'is-invalid': country == '' && countryBlured,
                       }"
                       v-on:blur="countryBlured = true"
                     >
-                      <option>--PAÍS DE RESIDENCIA--</option>
-
-                      <option value="169">COLOMBIA</option>
-                    </select>
-                    <div class="invalid-feedback">Pais requerido</div>
+                      <template v-slot:noresults>
+                        <h6 class="p-2">No hay resultados.</h6>
+                      </template>
+                    </Multiselect>
+                    <div class="invalid-feedback">País requerido</div>
                   </div>
 
-                  <div class="form-group col-md-6">
-                    <!--  <label for="deparment">Departamento de residencia</label> -->
-                    <select
-                      @change="listCities(deparment)"
+                  <div v-if="country" class="form-group col-md-6">
+                    <Multiselect
                       v-model="deparment"
+                      placeholder="DEPARTAMENTO"
+                      label="name"
+                      :searchable="true"
+                      :filterResults="true"
+                      :minChars="20"
+                      :resolveOnLoad="true"
+                      :delay="0"
+                      :options="deparments"
+                      @input="listCities"
                       v-bind:class="{
                         'form-control form-control-sm': true,
-                        'is-invalid':
-                          deparment == '--DEPARTAMENTO DE RESIDENCIA--' &&
-                          deparmentBlured,
+                        'is-invalid': deparment == '' && deparmentBlured,
                       }"
                       v-on:blur="deparmentBlured = true"
                     >
-                      <option>--DEPARTAMENTO DE RESIDENCIA--</option>
-                      <option
-                        v-for="item in deparments"
-                        :key="item"
-                        :value="item.cod_erp"
-                      >
-                        {{ item.descripcion }}
-                      </option>
-                    </select>
+                      <template v-slot:noresults>
+                        <h6 class="p-2">No hay resultados.</h6>
+                      </template>
+                    </Multiselect>
                     <div class="invalid-feedback">Departamento requerido</div>
                   </div>
 
-                  <div class="form-group col-md-6">
-                    <!-- <label for="deparment">Ciudad de residencia</label> -->
-                    <select
+                  <div v-if="deparment" class="form-group col-md-6">
+                    <Multiselect
                       v-model="city"
+                      placeholder="SELECCIONAR CIUDAD"
+                      label="name"
+                      :searchable="true"
+                      :filterResults="true"
+                      :minChars="20"
+                      :resolveOnLoad="true"
+                      :delay="0"
+                      :options="cities"
+                      @input="listNeighborhood"
                       v-bind:class="{
                         'form-control form-control-sm': true,
-                        'is-invalid':
-                          city == '--CIUDAD DE RESIDENCIA--' && cityBlured,
+                        'is-invalid': city == '' && cityBlured,
                       }"
                       v-on:blur="cityBlured = true"
                     >
-                      <option>--CIUDAD DE RESIDENCIA--</option>
-                      <option
-                        v-for="item in cities"
-                        :key="item.cod_erp"
-                        :value="item.cod_erp"
-                      >
-                        {{ item.descripcion }}
-                      </option>
-                    </select>
-                    <div class="invalid-feedback">Ciudad requerido</div>
+                      <template v-slot:noresults>
+                        <h6 class="p-2">No hay resultados.</h6>
+                      </template>
+                    </Multiselect>
+                    <div class="invalid-feedback">Ciudad requerida</div>
                   </div>
-                 
 
-                  <div class="form-group col-md-6">
-                    <!--  <label for="deparment">Bario de residencia</label> -->
-                    <select
+                  <div v-if="city" class="form-group col-md-6">
+                    <Multiselect
                       v-model="neighborhood"
+                      placeholder="SELECCIONAR BARRIO"
+                      label="name"
+                      :searchable="true"
+                      :filterResults="true"
+                      :minChars="20"
+                      :resolveOnLoad="true"
+                      :delay="0"
+                      :options="neighborhoods"
                       v-bind:class="{
                         'form-control form-control-sm': true,
-                        'is-invalid':
-                          neighborhood == '--BARRIO DE RESIDENCIA--' &&
-                          neighborhoodBlured,
+                        'is-invalid': neighborhood == '' && neighborhoodBlured,
                       }"
                       v-on:blur="neighborhoodBlured = true"
                     >
-                      <option>--BARRIO DE RESIDENCIA--</option>
-                      <option value="LA CAROLINA">LA CAROLINA</option>
-                    </select>
+                      <template v-slot:noresults>
+                        <h6 class="p-2">No hay resultados.</h6>
+                      </template>
+                    </Multiselect>
                     <div class="invalid-feedback">Barrio requerido</div>
                   </div>
 
@@ -330,7 +343,12 @@
           >
             Guardar
           </button>
-          <router-link v-if="!submitted" to="/" type="button" class="btn btn-danger ml-1 btn-sm px-3">
+          <router-link
+            v-if="!submitted"
+            to="/"
+            type="button"
+            class="btn btn-danger ml-1 btn-sm px-3"
+          >
             Cancelar
           </router-link>
         </div>
@@ -342,10 +360,15 @@
 import axios from "axios";
 import moment from "moment";
 import GetDataContact from "../assets/js/GetDataContact.js";
+import Multiselect from "@vueform/multiselect";
 export default {
   name: "RegisterUser",
+  components: {
+    Multiselect,
+  },
   data() {
     return {
+      value: null,
       masks: {
         input: "YYYY-MM-DD",
       },
@@ -357,9 +380,9 @@ export default {
       document: "",
       birthDate: "Fecha de nacimiento...",
       gender: "--GÉNERO--",
-      country: "--PAÍS DE RESIDENCIA--",
-      deparment: "--DEPARTAMENTO DE RESIDENCIA--",
-      city: "--CIUDAD DE RESIDENCIA--",
+      country: "",
+      deparment: "",
+      city: "",
       neighborhood: "--BARRIO DE RESIDENCIA--",
       direction: "",
       phone: "",
@@ -390,13 +413,11 @@ export default {
       countries: null,
       deparments: null,
       cities: null,
+      neighborhoods: null,
     };
   },
   mounted() {
     this.listCounty();
-    window.$(document).ready(function () {
-      window.$(".js-example-basic-single").select2();
-    });
   },
   methods: {
     validatePersonalInformation() {
@@ -509,45 +530,86 @@ export default {
     },
 
     async listCounty() {
+      this.countries = [];
       GetDataContact.getCoutries().then((res) => {
-        this.countries = res;
+        for (let index = 0; index < res.length; index++) {
+          if (res[index].descripcion === "COLOMBIA") {
+            this.countries.push({
+              value: res[index].cod_erp,
+              name: res[index].descripcion,
+            });
+          }
+        }
       });
     },
 
     async listDeparment(country) {
-      this.deparments = null;
-      let option = [];
-      GetDataContact.getDeparment(country).then((res) => {
-        for (let index = 0; index < res.length; index++) {
-          if (res[index].descripcion) {
-            option.push({
-              cod_erp: res[index].cod_erp,
-              descripcion: res[index].descripcion,
-            });
+      this.deparments = [];
+      this.city = null;
+      this.neighborhood = null;
+      if (country) {
+        GetDataContact.getDeparment(country).then((res) => {
+          for (let index = 0; index < res.length; index++) {
+            if (
+              res[index].cod_erp === "08" ||
+              res[index].cod_erp === "11" ||
+              res[index].cod_erp === "13" ||
+              res[index].cod_erp === "25"
+            ) {
+              this.deparments.push({
+                value: res[index].cod_erp,
+                name: res[index].descripcion,
+              });
+            }
           }
-        }
-        this.deparments = option;
-      });
+        });
+      }
     },
 
-    async listCities(deparment) {
-      this.city = "--CIUDAD DE RESIDENCIA--";
-      this.cities = null;
-      let option = [];
-      GetDataContact.getCities(this.country, deparment).then((res) => {
-        for (let index = 0; index < res.length; index++) {
-          if (res[index].descripcion) {
-            option.push({
-              cod_erp: res[index].cod_erp,
-              descripcion: res[index].descripcion,
+    async listCities(selectedItems) {
+      this.city = "";
+      this.cities = [];
+      this.neighborhood = null;
+      if (selectedItems) {
+        GetDataContact.getCities(this.country, selectedItems).then((res) => {
+          if (!Array.isArray(res)) {
+            res = [res];
+          }
+          for (let index = 0; index < res.length; index++) {
+            this.cities.push({
+              value: res[index].cod_erp,
+              name: res[index].descripcion,
             });
           }
-        }
-        this.cities = option;
-      });
+        });
+      } else {
+        this.deparment = null;
+      }
+    },
+
+    async listNeighborhood(selectedItems) {
+      this.neighborhood = "";
+      this.neighborhoods = [];
+      if (selectedItems) {
+        GetDataContact.getNeighborhood(
+          this.country,
+          this.deparment,
+          selectedItems
+        ).then((res) => {
+          for (let index = 0; index < res.length; index++) {
+            if (res[index].descripcion) {
+              this.neighborhoods.push({
+                value: res[index].cod_erp,
+                name: res[index].descripcion,
+              });
+            }
+          }
+        });
+      } else {
+        this.neighborhood = null;
+      }
     },
   },
 };
 </script>
-<style>
-</style>
+<style src="@vueform/multiselect/themes/default.css"></style>

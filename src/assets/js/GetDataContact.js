@@ -40,19 +40,20 @@ async function getCities(country, deparment) {
 }
 
 
-/* async function getNeighborhood(country, deparment, city) {
+async function getNeighborhood(country, deparment, city) {
   const content = {};
   content.id_pais = country;
   content.id_departamento = deparment;
+  content.id_ciudad = city;
   try {
     const res = await axios.post(
-      urlApi + "municipios/ListByMunicipalityAndCountry",
+      urlApi + "barrios/ListNeighborhoodByCitiesLocal",
       content
     );
     return res.data.data;
   } catch (error) {
     Promise.resolve();
   }
-} */
+}
 
-export default { getCoutries, getDeparment, getCities };
+export default { getCoutries, getDeparment, getCities, getNeighborhood };
