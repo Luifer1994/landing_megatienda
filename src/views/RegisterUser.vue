@@ -317,6 +317,14 @@
         </div>
 
         <div class="row container">
+          <router-link
+            v-if="!submitted"
+            to="/"
+            type="button"
+            class="btn btn-danger ml-1 btn-sm px-3"
+          >
+            Cancelar
+          </router-link>
           <button
             v-if="formData === 2 && !submitted"
             @click="prevForm()"
@@ -343,14 +351,6 @@
           >
             Guardar
           </button>
-          <router-link
-            v-if="!submitted"
-            to="/"
-            type="button"
-            class="btn btn-danger ml-1 btn-sm px-3"
-          >
-            Cancelar
-          </router-link>
         </div>
       </div>
     </div>
