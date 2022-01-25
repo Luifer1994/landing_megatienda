@@ -321,7 +321,7 @@
             v-if="!submitted"
             to="/"
             type="button"
-            class="btn btn-danger ml-1 btn-sm px-3"
+            class="btn btn-danger mx-1 btn-sm px-3"
           >
             Cancelar
           </router-link>
