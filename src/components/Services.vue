@@ -4,7 +4,7 @@
       <div class="text-center wow fadeInUp">
         <div class="subhead text-primary">Este espectacular</div>
         <h2 class="title-section" style="color: #e20613">
-          <b>Renault Sandero Life</b>
+          <b>RENAULT SANDERO</b>
         </h2>
         <div class="subhead text-primary">Puede ser tuyo</div>
       </div>
