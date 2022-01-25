@@ -14,6 +14,9 @@
                   ../assets/img/Piezas-para-landing-Boton-1.png 480w,
                   ../assets/img/Piezas-para-landing-Boton-1.png 800w
                 "
+                sizes="(max-width: 300px) 200px,
+            (max-width: 480px) 200px,
+            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
                 alt="Mega Tiendas"
                 class="img-fluid rounded-start"
@@ -50,6 +53,9 @@
                   ../assets/img/Piezas-para-landing-Boton-1.png 480w,
                   ../assets/img/Piezas-para-landing-Boton-1.png 800w
                 "
+                sizes="(max-width: 300px) 200px,
+            (max-width: 480px) 200px,
+            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
                 alt="Mega Tiendas"
                 class="img-fluid rounded-start"
