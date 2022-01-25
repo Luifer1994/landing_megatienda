@@ -35,12 +35,21 @@
 
         <div class="navbar-collapse collapse" id="navbarContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
+              <router-link
+                to="/"
+                @click="closedMenu()"
+                class="nav-link"
+                style="color: #014898"
+                ><b>Inicio</b>
+              </router-link>
+            </li>
+            <li class="nav-item">
               <router-link
                 @click="closedMenu()"
                 to="/terms-conditions"
                 class="nav-link"
-                style="color: #e20613"
+                style="color: #014898"
                 ><b>Términos y condiciones</b>
               </router-link>
             </li>
@@ -60,3 +69,9 @@ export default {
   },
 };
 </script>
+<style>
+.router-link-exact-active {
+  color: rgb(226, 6, 19) !important;
+  font-weight: bold;
+}
+</style>

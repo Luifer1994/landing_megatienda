@@ -26,9 +26,9 @@
           </div>
         </div>
       </div>
-      <a href="#about" class="btn-scroll" data-role="smoothscroll"
+      <!-- <a href="#about" class="btn-scroll" data-role="smoothscroll"
         ><span class="mai-arrow-down"></span
-      ></a>
+      ></a> -->
     </div>
   </div>
 </template>
@@ -43,10 +43,10 @@ export default {
   max-width: 500px;
   height: auto;
 }
-.mt{
+.mt {
   margin-top: 1px;
 }
-.mb{
+.mb {
   margin-bottom: 0%;
 }
 </style>

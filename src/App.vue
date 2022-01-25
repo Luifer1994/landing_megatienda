@@ -1,14 +1,13 @@
 <template>
   <Nav></Nav>
-  <banner v-if="
-      $route.name !== 'TermsConditions'"></banner>
+  <banner v-if="$route.name !== 'TermsConditions'"></banner>
   <router-view />
   <Footer></Footer>
-  <notifications position="bottom right"/>
+  <notifications position="bottom right" />
 </template>
 <script>
-import Banner from './components/Banner.vue';
-import Footer from './components/Footer.vue';
+import Banner from "./components/Banner.vue";
+import Footer from "./components/Footer.vue";
 import Nav from "./components/Nav.vue";
 export default {
   components: {
@@ -37,7 +36,7 @@ export default {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+a.router-link-exact-active {
   color: #42b983;
 }
 </style>

@@ -48,9 +48,9 @@
                   'is-invalid': !coupon && couponBlured,
                 }"
                 v-on:blur="couponBlured = true"
-                placeholder="Cupón..."
+                placeholder="Número..."
               />
-              <div class="invalid-feedback">Cupón requerido</div>
+              <div class="invalid-feedback">Número requerido</div>
             </div>
 
             <div class="form-group col-md-12" v-if="isValid">
@@ -114,6 +114,7 @@ export default {
       isValid: false,
       validating: false,
       urlApi: process.env.VUE_APP_URL_API,
+      urlApiAdmin: process.env.VUE_APP_URL_API_ADMIN,
       document: "",
       coupon: "",
       serie: "",
@@ -121,6 +122,9 @@ export default {
       couponBlured: false,
       serieBlured: false,
       valid: false,
+      data_client: null,
+      data: {},
+      validCoupon: false,
     };
   },
   methods: {
@@ -133,6 +137,7 @@ export default {
             this.urlApi + "clients?document_client=" + this.document
           );
           if (res.data.res) {
+            this.data_client = res.data.data;
             this.isValid = true;
           }
         }
@@ -147,12 +152,60 @@ export default {
       }
       this.validating = false;
     },
-    storeCoupon() {
+    async storeCoupon() {
       this.validateCoupon();
-      if (this.valid) {
+      if (this.validCoupon) {
+        const res = await axios.get(
+          "https://api-wsdl.acercate.com.co/firas/validate?id_cliente=" +
+            this.document +
+            "&numero=" +
+            this.coupon +
+            "&serie=" +
+            this.serie
+        );
+
+        if (res.data.data.Column1 === "1") {
+          this.data.document = this.document;
+          this.data.coupon = this.coupon;
+          this.data.serie = this.serie;
+          this.data.name = this.data_client.f9740_nombre;
+          this.data.last_name =
+            this.data_client.f9740_apellido_1 +
+            this.data_client.f9740_apellido_2;
+          this.data.phone = this.data_client.f9740_celular;
+          this.data.email = this.data_client.f9740_email;
+          this.data.city = this.data_client.ciudad;
+          this.data.direction = this.data_client.direccion;
+
+          const store = await axios.post(
+            this.urlApiAdmin + "register-coupon-client",
+            this.data
+          );
+          if (store.data.res) {
+            this.couponBlured = false;
+            this.serieBlured = false;
+            this.$notify({
+              title: "Éxito",
+              text: store.data.message,
+              type: "success",
+            });
+          } else {
+            this.$notify({
+              title: "Error",
+              text: store.data.message,
+              type: "error",
+            });
+          }
+        } else {
+          this.$notify({
+            title: "Error",
+            text: "El cupón o serie no estan asociados a este domcuento",
+            type: "error",
+          });
+        }
+
         this.coupon = "";
         this.serie = "";
-        console.log("Todo ok");
       }
     },
     validate: function () {
@@ -165,7 +218,9 @@ export default {
       this.couponBlured = true;
       this.serieBlured = true;
       if (this.coupon && this.serie) {
-        this.valid = true;
+        this.validCoupon = true;
+      } else {
+        this.validCoupon = false;
       }
     },
     cancel() {
@@ -173,6 +228,12 @@ export default {
       this.coupon = "";
       this.serie = "";
       this.document = "";
+      this.isValid = false;
+      this.validating = false;
+      this.valid = false;
+      this.data_client = null;
+      this.data = {};
+      this.validCoupon = false;
     },
   },
 };
