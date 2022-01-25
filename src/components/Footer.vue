@@ -1,8 +1,5 @@
 <template>
-  <footer
-    class="page-footer bg-image"
-    style="background-image: url(../assets/img/bg_pattern.svg)"
-  >
+  <footer class="page-footer bg-image">
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-3 py-3">
@@ -30,29 +27,40 @@
               <a
                 href="https://www.megatiendas.co/nuestras-sedes"
                 target="_blank"
-                ><i class="mai-map" style="font-size:30px"></i
+                ><i class="mai-map" style="font-size: 30px"></i
               ></a>
             </li>
           </ul>
         </div>
         <div class="col-lg-3 py-3">
           <h5>Contactanos</h5>
-          <a href="https://tawk.to/chat/61169757649e0a0a5cd1027c/1fd03ubnk" target="_blank" class="footer-link">Chatea con nosotros <i class="mai-chatbox"></i></a>
+          <a
+            href="https://tawk.to/chat/61169757649e0a0a5cd1027c/1fd03ubnk"
+            target="_blank"
+            class="footer-link"
+            >Chatea con nosotros <i class="mai-chatbox"></i
+          ></a>
           <a href="#" class="footer-link">servicioalcliente@megatiendas.co</a>
         </div>
         <div class="col-lg-3 py-3">
           <h5>Autoriza</h5>
           <ul class="footer-menu">
             <li>
-               <img class="autorization footer-link" src="../assets/img/Landing_LOGO_AUTORIZA_COLJUEGOS.png"  alt="">
+              <img
+                class="autorization footer-link"
+                src="../assets/img/Landing_LOGO_AUTORIZA_COLJUEGOS.png"
+                alt=""
+              />
             </li>
           </ul>
         </div>
       </div>
 
       <p class="text-center" id="copyright">
-        Copyright &copy; 2022. 
-        <a href="https://www.megatiendas.co/" class="text-white" target="_blank">Megatiendas</a>
+        Copyright &copy; 2022.
+        <a href="https://www.megatiendas.co/" class="text-white" target="_blank"
+          >Megatiendas</a
+        >
       </p>
     </div>
   </footer>
@@ -63,9 +71,9 @@ export default {
 };
 </script>
 <style>
-  .autorization{
-    width: 100%;
-    height: auto;
-    margin-top: 0px;
-  }
+.autorization {
+  width: 100%;
+  height: auto;
+  margin-top: 0px;
+}
 </style>

@@ -1,10 +1,7 @@
 <template>
   <!-- Banner info -->
   <div class="page-section banner-info">
-    <div
-      class="wrap bg-image"
-      style="background-image: url(../assets/img/bg_pattern.svg)"
-    >
+    <div class="wrap bg-image">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 py-3 pr-lg-5 wow fadeInUp">
