@@ -14,9 +14,6 @@
                   ../assets/img/Piezas-para-landing-Boton-1.png 480w,
                   ../assets/img/Piezas-para-landing-Boton-1.png 800w
                 "
-                sizes="(max-width: 300px) 200px,
-            (max-width: 480px) 200px,
-            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
                 alt="Mega Tiendas"
                 class="img-fluid rounded-start"
@@ -29,7 +26,8 @@
                   Antes de realizar tus compras regístrate o actualiza tus
                   datos.
                 </p>
-                <router-link to="/register-user"
+                <router-link
+                  to="/register-user"
                   type="button"
                   class="btn btn-primary"
                 >
@@ -52,15 +50,12 @@
                   ../assets/img/Piezas-para-landing-Boton-1.png 480w,
                   ../assets/img/Piezas-para-landing-Boton-1.png 800w
                 "
-                sizes="(max-width: 300px) 200px,
-            (max-width: 480px) 200px,
-            600px"
                 src="../assets/img/Piezas-para-landing-Boton-1.png"
                 alt="Mega Tiendas"
                 class="img-fluid rounded-start"
               />
             </div>
-            <div class="col-md-8" id="coupon">
+            <div class="col-md-8">
               <div class="card-body">
                 <h5 class="text-secondary"><b>Ingresa</b></h5>
                 <p class="card-text">

@@ -31,14 +31,7 @@
           <div class="col-lg-6 py-3 wow fadeInRight">
             <div class="img-fluid text-center">
               <img
-                srcset="
-                  ../assets/img/Landing-10.png 320w,
-                  ../assets/img/Landing-10.png 480w,
-                  ../assets/img/Landing-10.png 800w
-                "
-                sizes="(max-width: 400px) 320px,
-            (max-width: 400px) 320px,
-            320px"
+                width="350"
                 src="../assets/img/Landing-10.png"
                 alt="Mega Tiendas"
               />
