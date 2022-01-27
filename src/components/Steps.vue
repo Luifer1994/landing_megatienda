@@ -63,10 +63,9 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="text-secondary"><b>Ingresa</b></h5>
+                <h5 class="text-secondary"><b>Ingresar cupón</b></h5>
                 <p class="card-text">
-                  Ingresa: Ingresa a www.landing.megatiendas.co y registra tus
-                  códigos.
+                  Después de realizar tus compras registra tus números y series.
                 </p>
                 <button
                   type="button"

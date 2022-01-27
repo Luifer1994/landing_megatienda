@@ -164,7 +164,7 @@ export default {
             this.serie
         );
 
-        if (res.data.data.Column1 === "1") {
+        if (res.data.data.Column1 === "0") {
           this.data.document = this.document;
           this.data.coupon = this.coupon;
           this.data.serie = this.serie;

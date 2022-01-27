@@ -291,18 +291,21 @@
                       v-model="phone"
                       v-bind:class="{
                         'form-control form-control-sm': true,
-                        'is-invalid': !phone && phoneBlured,
+                        'is-invalid':
+                          !phone && phoneBlured && phone.length !== 10,
                       }"
                       v-on:blur="phoneBlured = true"
-                      placeholder="Télefono..."
+                      placeholder="Celular..."
                     />
-                    <div class="invalid-feedback">Télefono requerido</div>
+                    <div class="invalid-feedback">
+                      Celular requerido de 10 digitos
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div v-else class="alert alert-success" role="alert">
-              <h5><b>¡Exito!</b> Gracias por tu registro</h5>
+              <h5><b>¡Registro exitoso!</b> Gracias por tu registro</h5>
               <p>En tus proximas compras podras redimir tus cupones!</p>
             </div>
             <router-link
@@ -451,7 +454,11 @@ export default {
       this.directionBlured = true;
       this.neighborhoodBlured = true;
       this.phoneBlured = true;
-      if (this.validEmail(this.email) && this.validatePersonalInformation()) {
+      if (
+        this.validEmail(this.email) &&
+        this.validatePersonalInformation() &&
+        this.validatePhone()
+      ) {
         this.valid = true;
       }
     },
@@ -480,7 +487,6 @@ export default {
           content.telefono = this.phone.toString();
           content.email = this.email;
           content.genero = this.gender;
-          console.log(content);
 
           const res = await axios.post(this.urlApi + "clients/export", content);
           if (res.data.res) {
@@ -491,7 +497,6 @@ export default {
               type: "success",
             });
           }
-          console.log(res.data);
           this.storing = false;
         }
       } catch (error) {
@@ -512,6 +517,18 @@ export default {
     },
     prevForm() {
       this.formData = this.formData - 1;
+    },
+    validatePhone() {
+      if (this.phone.toString().length === 10) {
+        return true;
+      } else {
+        console.log(this.phone.length);
+        this.$notify({
+          title: "Error",
+          text: "EL celular debe ser de 10 digitos",
+          type: "error",
+        });
+      }
     },
     validateDate() {
       if (

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row mb-5">
         <div class="col-lg-3 py-3">
-          <h5>Siguenos en nuestras redes sociales</h5>
+          <h5>Síguenos en nuestras redes sociales</h5>
           <div class="social-media-button">
             <a
               href="https://www.facebook.com/MegatiendasOficial"
@@ -34,10 +34,7 @@
         </div>
         <div class="col-lg-3 py-3">
           <h5>Contactanos</h5>
-          <a
-            href="https://tawk.to/chat/61169757649e0a0a5cd1027c/1fd03ubnk"
-            target="_blank"
-            class="footer-link"
+          <a href="https://wa.link/fzsuzl" target="_blank" class="footer-link"
             >Chatea con nosotros <i class="mai-chatbox"></i
           ></a>
           <a href="#" class="footer-link">servicioalcliente@megatiendas.co</a>
