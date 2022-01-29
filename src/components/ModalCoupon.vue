@@ -139,9 +139,14 @@ export default {
           if (res.data.res) {
             this.data_client = res.data.data;
             this.isValid = true;
+          } else {
+            this.isValid = false;
           }
         }
       } catch (error) {
+        console.log(error.response);
+        this.isValid = false;
+
         this.$notify({
           title: "Error",
           text: "Usted no se encuentra registrado en nuestro sistema!",
@@ -164,19 +169,32 @@ export default {
             this.serie
         );
 
-        if (res.data.data.Column1 === "0") {
+        if (res.data.data.Column1 === "1") {
           this.data.document = this.document;
           this.data.coupon = this.coupon;
           this.data.serie = this.serie;
-          this.data.name = this.data_client.f9740_nombre;
-          this.data.last_name =
-            this.data_client.f9740_apellido_1 +
-            this.data_client.f9740_apellido_2;
+
+          if (this.data_client.f9740_nombre) {
+            this.data.name = this.data_client.f9740_nombre;
+          } else {
+            this.data.name = this.data_client.f9740_razon_social;
+          }
+
+          if (
+            this.data_client.f9740_apellido_1 &&
+            this.data_client.f9740_apellido_2
+          ) {
+            this.data.last_name =
+              this.data_client.f9740_apellido_1 +
+              this.data_client.f9740_apellido_2;
+          } else {
+            this.data.last_name = this.data_client.f9740_razon_social;
+          }
+
           this.data.phone = this.data_client.f9740_celular;
           this.data.email = this.data_client.f9740_email;
           this.data.city = this.data_client.ciudad;
           this.data.direction = this.data_client.direccion;
-
           const store = await axios.post(
             this.urlApiAdmin + "register-coupon-client",
             this.data
