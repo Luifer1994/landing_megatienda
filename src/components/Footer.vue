@@ -34,9 +34,9 @@
         </div>
         <div class="col-lg-3 py-3">
           <h5>Contactanos</h5>
-          <a href="https://wa.link/fzsuzl" target="_blank" class="footer-link"
+          <!-- <a href="https://wa.link/fzsuzl" target="_blank" class="footer-link"
             >Chatea con nosotros <i class="mai-chatbox"></i
-          ></a>
+          ></a> -->
           <a href="#" class="footer-link">servicioalcliente@megatiendas.co</a>
         </div>
         <div class="col-lg-3 py-3">

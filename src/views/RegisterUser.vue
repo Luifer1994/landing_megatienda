@@ -69,7 +69,7 @@
                         'is-invalid': !name && nameBlured,
                       }"
                       v-on:blur="nameBlured = true"
-                      placeholder="Nombre completo..."
+                      placeholder="Nombres..."
                     />
                     <div class="invalid-feedback">Nombre requerido</div>
                   </div>
@@ -306,7 +306,7 @@
             </div>
             <div v-else class="alert alert-success" role="alert">
               <h5><b>¡Registro exitoso!</b> Gracias por tu registro</h5>
-              <p>En tus proximas compras podras redimir tus cupones!</p>
+              <p>En tus proximas compras pordras seguir reclamando cupones!</p>
             </div>
             <router-link
               v-if="submitted"

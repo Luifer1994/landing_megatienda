@@ -49,14 +49,14 @@
             <div class="col-md-4">
               <img
                 srcset="
-                  ../assets/img/Piezas-para-landing-Boton-1.png 320w,
-                  ../assets/img/Piezas-para-landing-Boton-1.png 480w,
-                  ../assets/img/Piezas-para-landing-Boton-1.png 800w
+                  ../assets/img/2_Boton3.png 320w,
+                  ../assets/img/2_Boton3.png 480w,
+                  ../assets/img/2_Boton3.png 800w
                 "
                 sizes="(max-width: 300px) 200px,
             (max-width: 480px) 200px,
             600px"
-                src="../assets/img/Piezas-para-landing-Boton-1.png"
+                src="../assets/img/2_Boton3.png"
                 alt="Mega Tiendas"
                 class="img-fluid rounded-start"
               />

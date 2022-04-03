@@ -25,7 +25,7 @@
         <div class="modal-body">
           <div class="form-row form-wrap form-wrap text-justify">
             <div class="form-group col-md-12">
-              <label for="document" v-if="!valid">Validar documento</label>
+              <label for="document" v-if="!valid">Ingresa tu cedula</label>
               <input
                 type="number"
                 v-model="document"
